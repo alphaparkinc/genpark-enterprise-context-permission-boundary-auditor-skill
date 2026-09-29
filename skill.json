@@ -1,0 +1,40 @@
+{
+  "name": "genpark-enterprise-context-permission-boundary-auditor-skill",
+  "version": "1.0.0",
+  "description": "Enterprise Private Context & Role-Based Access Control (RBAC) Governance Sentinel (inspired by WeChat Work, Tencent Docs enterprise permissions). Inspects ingested context, classifies security clearance tiers, sanitizes cross-department prompts, and prevents data leaks.",
+  "tools": [
+    {
+      "name": "audit_context_permission_boundary",
+      "description": "Inspect enterprise document/meeting context, detect permission clearance violations, sanitize cross-department prompts, and log audit trail.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "audit_context_ingestion",
+              "sanitize_cross_boundary_prompt",
+              "get_security_summary"
+            ],
+            "description": "Permission governance action."
+          },
+          "context_text": {
+            "type": "string",
+            "description": "Text context to inspect."
+          },
+          "requester_role": {
+            "type": "string",
+            "description": "Role of the requesting agent/user (e.g. 'INTERN', 'ENGINEERING', 'HR_MANAGER', 'EXECUTIVE')."
+          },
+          "source_channel": {
+            "type": "string",
+            "description": "Ingestion channel (e.g. 'Tencent Docs', 'Enterprise Meeting', 'WeChat Work Chat')."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
